@@ -32,7 +32,6 @@ try:
 except ImportError:
     HAS_PLOTTING_LIBS = False
 
-# ====================== HELPER FUNCTIONS ====================== #
 
 def get_tolerance(operation: str) -> float:
     """
@@ -79,7 +78,6 @@ class TimeoutException(Exception):
     """Raised when user does not respond within the given time."""
     pass
 
-# ====================== GAME CONFIGURATION ====================== #
 class GameConfig:
     
     
@@ -105,7 +103,6 @@ class ConfigManager:
     def get_config(self, key: str, default: Any = None) -> Any:
         return self.config_values.get(key, default)
 
-# ====================== LOGGING ====================== #
 class LoggerLevel:
     DEBUG = 10
     INFO = 20
@@ -141,7 +138,6 @@ class GameLogger:
         if self._level <= LoggerLevel.CRITICAL:
             print(f"{Fore.RED}[CRITICAL]{Style.RESET_ALL} {msg}")
 
-# ====================== ABSTRACT DICE CLASS ====================== #
 class BaseDice(ABC):
     """Abstract base class for dice-rolling."""
     @abstractmethod
@@ -150,7 +146,6 @@ class BaseDice(ABC):
 
 
 
-# ====================== CONCRETE DICE IMPLEMENTATION ====================== #
 class MultipleDice(BaseDice):
     """
     By default, holds 'num_dice' and 'faces', but can override the count at roll-time.
@@ -168,7 +163,6 @@ class MultipleDice(BaseDice):
 
 
 
-# ====================== PLAYER CLASS ====================== #
 class Player:
     """Player class with name, balance, bet mechanics (in USD)."""
     def __init__(self, starting_balance: float):
@@ -189,7 +183,6 @@ class Player:
 
 
 
-# ====================== GAME HISTORY ====================== #
 class GameHistory:
     
     def __init__(self):
@@ -281,7 +274,6 @@ class GameHistory:
 
 
 
-# ====================== USER INTERFACE ====================== #
 class GameUI:
     
     ALLOWED_OPERATIONS = ["sum", "difference", "multiplication", "division"]
@@ -372,7 +364,6 @@ class GameUI:
 
 
 
-# ====================== GAME CORE ====================== #
 class GameCore:
     
     _instance = None
@@ -557,7 +548,6 @@ class MarioGame:
             timed_out=timed_out
         )
 
-# ====================== ENTRY POINT ====================== #
 def main():
     random.seed(time.time())
     game = MarioGame()
